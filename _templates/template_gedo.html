@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <title>Ciudadanía italiana por reconstrucción en CABA</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+</head>
+<body>
+
+<div class="jumbotron text-center">
+    <h1>Templates de traducciones de actas de CABA al italiano</h1>
+    <p>Traducción de acta de nacimiento (tipo 1) con firma ológrafa</p>
+    <a href="../index.html"> Volver al inicio</a>
+</div>
+
+<div class="container">
+    <div class="container">
+    <img src="../images/Acta_Nacimiento_Anonimizada_Tipo_1.png" style="max-width: 100%"/>
+    </div>
+    <br> <br>
+    <div class="h2">TRADUZIONE (reemplazar lo azul entre llaves)</div>
+
+    [Vi è uno stemma:] Comune della Città di Buenos Aires <br>
+    Carta d’identità N. <span class="text-primary" id="DNI_Sujeto">{DNI Sujeto}</span> <br>
+    <span class="text-primary" id="Numero_Hoja">{Número hoja (impreso arriba a la derecha)}</span> UFFICIO DELLO STATO CIVILE E CAPACITÀ DELLE PERSONE
+    <br>
+
+    <span class="text-primary" id="Circunscripcion">{Circunscripción (o Central Nacimientos)}</span>. VOLUME: <span
+        class="text-primary" id="Tomo_Acta">{Tomo acta}</span>. NUMERO: <span
+        class="text-primary" id="Numero_Acta">{Número acta}</span>. ANNO: <span class="text-primary" id="Agno_Acta">{Año acta}</span>.
+    A Buenos Aires, Capitale della Repubblica Argentina, addì <span class="text-primary" id="Fecha_Inscripcion">{Fecha inscripción (por ej, 26 gennaio 1994)}</span>,
+    Io, Ufficiale dello Stato Civile, iscrivo la NASCITA di: <br>
+
+    <span class="text-primary" id="Nombre_Sujeto">{Nombre sujeto}</span> <br>
+
+    Sesso <span class="text-primary" id="Sexo_Sujeto">{sexo (maschile / femminile)}</span>, <span class="bg-warning" id="Gender_nato">nato</span> il <span class="text-primary" id="Fecha_Nacimiento">{Fecha nacimiento}</span>,
+    alle ore <span class="text-primary" id="Hora_Nacimiento">{Hora nacimiento}</span>, in questa città, <span class="text-primary" id="Lugar_Nacimiento">{Dirección del nacimiento}</span>.
+    <span class="bg-warning" id="Gender_figlio">Figlio</span> di <span class="text-primary" id="Nombre_Padre">{Nombre padre}</span>, carta d'identità <span
+        class="text-primary" id="Tipo_DNI_Padre">{Tipo DNI Padre}</span> <span class="text-primary" id="DNI_Padre">{DNI padre}</span>,
+    e di <span class="text-primary" id="Nombre_Madre">{Nombre madre}</span>, carta d'identità
+    <span class="text-primary" id="Tipo_DNI_Madre">{Tipo DNI Madre}</span>
+    <span class="text-primary" id="DNI_Madre">{DNI madre}</span>, come risulta dall’attestazione di nascita
+    dell'ostetrica <span class="text-primary" id="Nombre_Partera">{Nombre partera}</span>. <br>
+
+    Interveniente: <span class="text-primary" id="Nombre_Interviniente">{Nombre interviniente}</span>, carta d'identità
+    <span class="text-primary" id="Tipo_DNI_Interviniente">{Tipo DNI interviniente}</span>
+    <span class="text-primary" id="DNI_Interviniente">{DNI interviniente}</span>,
+    domicilio: <span class="text-primary" id="Domicilio_Interviniente">{Domicilio interviniente}</span>.
+    Agisce in virtù dell’autorizzazione che si archivia. <span class="text-danger"> [Seguono due firme e un timbro
+    con la scritta:] Dott. Adolfo BRUDNICK - Capo della Centrale Nascite - Direzione Operativa - Ufficio dello Stato
+    Civile - Segretaria di Governo. [Vi è un timbro tondo con la scritta:] CENTRALE NASCITE - COMUNE DELLA CITTÀ DI
+    BUENOS AIRES - UFFICIO DELLO STATO CIVILE.</span> <br>
+
+    <span class="text-primary" id="Codigo_Acta">{Código Acta (IF- ...- DGRC)}</span>. Pagina 1 di 1. <br>
+
+    [A tergo: vi è uno stemma] GOVERNO DELLA CITTÀ DI BUENOS AIRES. Foglio addizionale di Firme. Atto con firma olografa.
+    Numero: <span class="text-primary" id="Codigo_Acta2">{Código Acta (IF- ...- DGRC)}</span>. Buenos Aires,
+    <span class="text-primary" id="Fecha_Firma_Olografa">{Fecha firma ológrafa}</span>. Riferimento: Atto Digitalizzato.
+    Documento ottenuto dal sistema GEDO [Gestione Elettronica di Documenti Ufficiali], composto da 1 pagina.
+    [Seguono i dati della firma digitale] GCBARCE - Assistente Amministrativo - Direzione Generale dello Stato Civile (SSGOBIER).
+
+
+    <div>
+    <br>
+        <div class="h4">Aclaraciones y tips</div>
+        <ul>
+            <li>
+                Lo marcado en <span class="text-danger">rojo</span> son las descripciones de las firmas, y debe adaptarse con atención según el caso.
+            </li>
+            <li>
+                En caso de tratarse del nacimiento de una mujer, <span class="bg-warning">nato</span> debe cambiarse a <span class="font-weight-bold">nata</span>, y
+        <span class="bg-warning">Figlio</span> debe cambiarse a <span class="font-weight-bold">Figlia</span>.
+            </li>
+            <li>
+                <span class="font-weight-bold">CENTRAL NACIMIENTOS</span> se traduce como <span class="font-weight-bold">CENTRALE NASCITE</span>, y
+                <span class="font-weight-bold">CIRCUNSCRIPCIÓN 13º</span> se traduce como <span class="font-weight-bold">SEZIONE 13º</span>.
+            </li>
+            <li>Los meses del año en italiano son: <span class="font-weight-bold"> Gennaio, Febbraio, Marzo, Aprile,
+                Maggio, Giugno, Luglio, Agosto, Settembre, Ottobre, Novembre, Dicembre</span>.</li>
+            <li>Los días de la semana en italiano son: <span class="font-weight-bold">
+                Lunedì, Martedì, Mercoledì, Giovedì, Venerdì, Sabato, Domenica.
+            </span></li>
+        </ul>
+
+
+    </div>
+</div>
+
+</body>
+</html>
+
