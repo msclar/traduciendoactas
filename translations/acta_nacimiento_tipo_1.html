@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <title>Ciudadanía italiana por reconstrucción en CABA</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+</head>
+<body>
+
+<script>
+
+    function fillBirthDate(inputFieldName) {
+        const dateObj = new Date($("#Fill_" + inputFieldName).val());
+        document.getElementById(inputFieldName).innerHTML =
+            dateObj.getDate() + " " + translateMonth(dateObj.getMonth()) + " " +  dateObj.getFullYear();
+    }
+
+    function fillBirthHour(inputFieldName, birthHourFieldDate) {
+        const dateObj = new Date($("#" + inputFieldName).val());
+
+        const formattedHours = dateObj.getHours().toLocaleString('en-US', {
+            minimumIntegerDigits: 2,
+            useGrouping: false
+        });
+        const formattedMinutes = dateObj.getMinutes().toLocaleString('en-US', {
+            minimumIntegerDigits: 2,
+            useGrouping: false
+        });
+        document.getElementById(birthHourFieldDate).innerHTML = formattedHours + ":" + formattedMinutes;
+    }
+
+    function translateMonth(month_number) {
+        const months = ["gennaio", "febbraio", "marzo", "aprile", "maggio", "giugno",
+                        "luglio", "agosto", "settembre", "ottobre", "novembre", "dicembre"];
+        return months[month_number];
+    }
+
+    function fillFields(arrayFieldNamesActa) {
+       for (let i = 0; i < arrayFieldNamesActa.length; i++) {
+            const fieldName = arrayFieldNamesActa[i];
+            console.log(fieldName);
+            document.getElementById(fieldName).innerHTML = document.getElementById("Fill_" + fieldName).value;
+        }
+    }
+
+    function fillGender(fieldName) {
+        const gender = document.getElementById("Fill_" + fieldName).value;
+
+        <!-- Translate other words-->
+        if (gender == "Masculino") {
+            document.getElementById("Sexo_Sujeto").innerHTML = "maschile";
+            document.getElementById("Gender_nato").innerHTML = "nato";
+            document.getElementById("Gender_figlio").innerHTML = "figlio";
+        }
+        else {
+            document.getElementById("Sexo_Sujeto").innerHTML = "femminile";
+            document.getElementById("Gender_nato").innerHTML = "nata";
+            document.getElementById("Gender_figlio").innerHTML = "figlia";
+        }
+    }
+
+    function fillCertificate(fieldNameCircunscripcion) {
+        const circunscription = document.getElementById("Fill_" + fieldNameCircunscripcion).value;
+        console.log(circunscription);
+        console.log(circunscription === "Central nacimientos");
+        if (circunscription === "Central nacimientos") {
+            document.getElementById(fieldNameCircunscripcion).innerHTML = "CENTRALE NASCITE";
+        }
+        else {
+            document.getElementById(fieldNameCircunscripcion).innerHTML = "SEZIONE " + circunscription.split(" ")[1];
+        }
+    }
+
+    function myFunction() {
+        fillBirthHour("Fill_Fecha_Nacimiento", "Hora_Nacimiento");
+        fillBirthDate("Fecha_Nacimiento");
+        fillBirthDate("Fecha_Inscripcion");
+        fillGender("Sexo_Sujeto");
+        fillCertificate("Circunscripcion");
+
+        fillFields(["Tomo_Acta", "Numero_Acta", "Agno_Acta", "Codigo_Acta", "Lugar_Nacimiento", "Numero_Hoja",
+                    "Tipo_DNI_Padre", "Tipo_DNI_Madre", "DNI_Padre", "DNI_Madre", "Nombre_Padre", "Nombre_Madre",
+                    "DNI_Sujeto", "Nombre_Sujeto", "DNI_Interviniente", "Tipo_DNI_Interviniente",
+                    "Nombre_Partera", "Nombre_Interviniente", "Domicilio_Interviniente"]);
+    }
+</script>
+
+<div class="jumbotron text-center">
+    <h1>Traducción automática de actas de CABA al italiano</h1>
+    <p>Traducción de acta de nacimiento (tipo 1)</p>
+    <a href="../index.html"> Volver al inicio</a>
+</div>
+<div class="container">
+<img src="../images/Acta_Nacimiento_Anonimizada_Tipo_1.png" style="max-width: 100%"/>
+</div>
+<br> <br>
+
+<div class="container mb-1 needs-validation">
+    <div>
+        Ingresá los datos de tu acta y generá automáticamente tu traducción en base a la hecha por un experto.
+        For favor, revisala por si llega a haber algún error o caso particular no cubierto aquí.
+    </div>
+    <div><br></div>
+    <div class="row h4 col-md-12">
+        Datos del acta
+    </div>
+    <div class="row needs-validation">
+        <!-- Datos del acta -->
+        <div class="col-md-5">
+            <label for="Fill_Circunscripcion">Circunscripción (o Central Nacimientos)</label>
+            <select class="form-control" id="Fill_Circunscripcion">
+                <option>Central nacimientos</option>
+                <option>Circunscripción 1</option>
+                <option>Circunscripción 2</option>
+                <option>Circunscripción 3</option>
+                <option>Circunscripción 4</option>
+                <option>Circunscripción 5</option>
+                <option>Circunscripción 6</option>
+                <option>Circunscripción 7</option>
+                <option>Circunscripción 8</option>
+                <option>Circunscripción 9</option>
+                <option>Circunscripción 10</option>
+                <option>Circunscripción 11</option>
+                <option>Circunscripción 12</option>
+                <option>Circunscripción 13</option>
+                <option>Circunscripción 14</option>
+                <option>Circunscripción 15</option>
+            </select>
+        </div>
+        <div class="col-md-3">
+            <label for="Fill_Tomo_Acta">Tomo</label>
+            <input class="form-control" type="text" id="Fill_Tomo_Acta" required>
+        </div>
+        <div class="col-md-2">
+            <label for="Fill_Numero_Acta">Número</label>
+            <input class="form-control" type="text" id="Fill_Numero_Acta" required>
+        </div>
+        <div class="col-md-2">
+            <label for="Fill_Agno_Acta">Año</label>
+            <input class="form-control" type="number" id="Fill_Agno_Acta" required>
+        </div>
+        <div class="col-md-6">
+            <label for="Fill_Fecha_Inscripcion">Fecha de emisión del acta </label>
+            <input class="form-control" type="date" max="2999-12-31T00:00" id="Fill_Fecha_Inscripcion">
+        </div>
+        <div class="col-md-6">
+            <label for="Fill_Codigo_Acta">Código acta (por ej, formato IF-....-DGRC)</label>
+            <input class="form-control" type="text" id="Fill_Codigo_Acta">
+        </div>
+        <div class="col-md-12">
+            <label for="Fill_Numero_Hoja">Número de hoja (impreso arriba a la derecha)</label>
+            <input class="form-control" type="number" id="Fill_Numero_Hoja">
+        </div>
+        <div class="col-md-8">
+            <label for="Fill_Nombre_Partera">Nombre de la partera en certificado (cambiar el texto si no es partera)</label>
+            <input class="form-control" type="text" id="Fill_Nombre_Partera">
+        </div>
+    </div>
+    <div><br></div>
+    <div class="form-group">
+        <div class="row h4 col-md-12">
+            Datos del titular del acta
+        </div>
+        <div class="row">
+            <!-- Datos del sujeto -->
+            <div class="col-md-6">
+                <label for="Fill_Nombre_Sujeto">Nombre y apellido</label>
+                <input class="form-control" type="text" id="Fill_Nombre_Sujeto">
+            </div>
+            <div class="col-md-6">
+                <label for="Fill_DNI_Sujeto">DNI</label>
+                <input class="form-control" type="number" id="Fill_DNI_Sujeto">
+            </div>
+            <div class="col-md-4">
+                <label for="Fill_Sexo_Sujeto">Sexo</label>
+                <select class="form-control" id="Fill_Sexo_Sujeto">
+                    <option>Masculino</option>
+                    <option>Femenino</option>
+                </select>
+            </div>
+            <div class="col-md-8">
+                <label for="Fill_Fecha_Nacimiento">Fecha y hora de nacimiento</label>
+                <input class="form-control" type="datetime-local" max="2999-12-31T00:00" id="Fill_Fecha_Nacimiento">
+            </div>
+            <div class="col-md-8">
+                <label for="Fill_Lugar_Nacimiento">Dirección del nacimiento</label>
+                <input class="form-control" type="text" id="Fill_Lugar_Nacimiento">
+            </div>
+        </div>
+    </div>
+    <div><br></div>
+    <div class="form-group">
+        <div class="row h4 col-md-12">
+            Datos de los padres del titular del acta
+        </div>
+        <div class="row h5 col-md-12">
+            Datos del padre (o primer progenitor)
+        </div>
+        <div class="row">
+            <!-- Datos del padre -->
+            <div class="col-md-6">
+                <label for="Fill_Nombre_Padre">Nombre y apellido </label>
+                <input class="form-control" type="text" id="Fill_Nombre_Padre">
+            </div>
+            <div class="col-md-3">
+                <label for="Fill_Tipo_DNI_Padre">Tipo de documento</label>
+                <select class="form-control" id="Fill_Tipo_DNI_Padre">
+                    <option>DNI</option>
+                    <option>LE</option>
+                    <option>LC</option>
+                    <option>DU</option>
+                </select>
+            </div>
+            <div class="col-md-3">
+                <label for="Fill_DNI_Padre">DNI</label>
+                <input class="form-control" type="number" id="Fill_DNI_Padre">
+            </div>
+        </div>
+
+        <div class="row h5 col-md-12 mt-2">
+            Datos de la madre (o segundo progenitor)
+        </div>
+        <div class="row">
+            <!-- Datos de la madre -->
+            <div class="col-md-6">
+                <label for="Fill_Nombre_Madre">Nombre y apellido</label>
+                <input class="form-control" type="text" id="Fill_Nombre_Madre">
+            </div>
+            <div class="col-md-3">
+                <label for="Fill_Tipo_DNI_Madre">Tipo de documento</label>
+                <select class="form-control" id="Fill_Tipo_DNI_Madre">
+                    <option>DNI</option>
+                    <option>LE</option>
+                    <option>LC</option>
+                    <option>DU</option>
+                </select>
+            </div>
+            <div class="col-md-3">
+                <label for="Fill_DNI_Madre">DNI</label>
+                <input class="form-control" type="number" id="Fill_DNI_Madre">
+            </div>
+        </div>
+    </div>
+    <div><br></div>
+    <div class="form-group">
+        <div class="row h4 col-md-12">
+            Datos del interviniente
+        </div>
+        <div class="row">
+            <!-- Datos del padre -->
+            <div class="col-md-6">
+                <label for="Fill_Nombre_Padre">Nombre y apellido </label>
+                <input class="form-control" type="text" id="Fill_Nombre_Interviniente">
+            </div>
+            <div class="col-md-3">
+                <label for="Fill_Tipo_DNI_Padre">Tipo de documento</label>
+                <select class="form-control" id="Fill_Tipo_DNI_Interviniente">
+                    <option>DNI</option>
+                    <option>LE</option>
+                    <option>LC</option>
+                    <option>DU</option>
+                </select>
+            </div>
+            <div class="col-md-3">
+                <label for="Fill_DNI_Padre">DNI</label>
+                <input class="form-control" type="number" id="Fill_DNI_Interviniente">
+            </div>
+            <div class="col-md-8">
+                <label for="Fill_Domicilio_Interviniente">Domicilio del interviniente</label>
+                <input class="form-control" type="text" id="Fill_Domicilio_Interviniente">
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <div class="col-sm-10">
+            <button id="compute" type="submit" class="btn btn-primary" onclick="myFunction()">Traducir</button>
+        </div>
+    </div>
+</div>
+<br>
+<div class="container">
+    <div class="h2">TRADUZIONE</div>
+
+    [Vi è uno stemma:] Comune della Città di Buenos Aires <br>
+    Carta d’identità N. <span class="text-primary" id="DNI_Sujeto">{DNI Sujeto}</span> <br>
+    <span class="text-primary" id="Numero_Hoja">{Número hoja (impreso arriba a la derecha)}</span> UFFICIO DELLO STATO CIVILE E CAPACITÀ DELLE PERSONE
+    <br>
+
+    <span class="text-primary" id="Circunscripcion">{Circunscripción (o Central Nacimientos)}</span>. VOLUME: <span
+        class="text-primary" id="Tomo_Acta">{Tomo acta}</span>. NUMERO: <span
+        class="text-primary" id="Numero_Acta">{Número acta}</span>. ANNO: <span class="text-primary" id="Agno_Acta">{Año acta}</span>.
+    A Buenos Aires, Capitale della Repubblica Argentina, addì <span class="text-primary" id="Fecha_Inscripcion">{Fecha inscripción}</span>,
+    Io, Ufficiale dello Stato Civile, iscrivo la NASCITA di: <br>
+
+    <span class="text-primary" id="Nombre_Sujeto">{Nombre sujeto}</span> <br>
+
+    Sesso <span class="text-primary" id="Sexo_Sujeto">{sexo}</span>, <span id="Gender_nato">nato</span> il <span class="text-primary" id="Fecha_Nacimiento">{Fecha nacimiento}</span>,
+    alle ore <span class="text-primary" id="Hora_Nacimiento">{Hora nacimiento}</span>, in questa città, <span class="text-primary" id="Lugar_Nacimiento">{Dirección del nacimiento}</span>.
+    <span id="Gender_figlio">Figlio</span> di <span class="text-primary" id="Nombre_Padre">{Nombre padre}</span>, carta d'identità <span
+        class="text-primary" id="Tipo_DNI_Padre">{Tipo DNI Padre}</span> <span class="text-primary" id="DNI_Padre">{DNI padre}</span>,
+    e di <span class="text-primary" id="Nombre_Madre">{Nombre madre}</span>, carta d'identità
+    <span class="text-primary" id="Tipo_DNI_Madre">{Tipo DNI Madre}</span>
+    <span class="text-primary" id="DNI_Madre">{DNI madre}</span>, come risulta dall’attestazione di nascita
+    dell'ostetrica <span class="text-primary" id="Nombre_Partera">{Nombre partera}</span>. <br>
+
+    Interveniente: <span class="text-primary" id="Nombre_Interviniente">{Nombre interviniente}</span>, carta d'identità
+    <span class="text-primary" id="Tipo_DNI_Interviniente">{Tipo DNI interviniente}</span>
+    <span class="text-primary" id="DNI_Interviniente">{DNI interviniente}</span>,
+    domicilio: <span class="text-primary" id="Domicilio_Interviniente">{Domicilio interviniente}</span>.
+    Agisce in virtù dell’autorizzazione che si archivia.
+
+    <br>
+    <span class="text-danger">[Seguono due firme e un timbro
+    con la scritta:] Dott. Adolfo BRUDNICK - Capo della Centrale Nascite - Direzione Operativa - Ufficio dello Stato
+    Civile - Segretaria di Governo. [Vi è un timbro tondo con la scritta:] CENTRALE NASCITE - COMUNE DELLA CITTÀ DI
+        BUENOS AIRES - UFFICIO DELLO STATO CIVILE.</span> <br>
+
+    <span class="text-primary" id="Codigo_Acta">{Código Acta (IF- ...- DGRC)}</span>. Pagina 1 di 1. <br>
+
+    <br>
+    Lo marcado en <span class="text-danger">rojo</span> son las descripciones de las firmas.
+</div>
+</body>
+</html>
